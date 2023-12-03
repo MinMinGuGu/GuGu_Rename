@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div align="center">
     <img src="https://badgen.net/badge/Python/v3.11.2" alt="Python-v3.11.2"/>
     <p>
         可以按照一定规则来重命名文件(也支持文件夹)
