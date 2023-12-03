@@ -20,7 +20,7 @@ def format_two_digits(input_str, offset=0):
     return result_str
 
 
-def get_s_name(path):
+def get_d_s_num(path):
     return format_two_digits(get_digital(Path(path).name))
 
 
@@ -31,7 +31,7 @@ def get_e_name(count, offset):
 def format_file_name(args, count):
     result = args.format
     result = result.replace('{d_name}', args.d_name)
-    result = result.replace('{d_s_name}', args.d_s_name)
+    result = result.replace('{d_s_num}', args.d_s_num)
     result = result.replace('{d_p_name}', args.d_p_name)
     result = result.replace('{item_num}', format_two_digits(count))
     return result
@@ -45,7 +45,7 @@ def get_new_file_name(args, file_name, count):
         if args.suffix is False:
             result += file_name[suffix_index:]
     else:
-        result = f'S{args.d_s_name}E{get_e_name(count, args.offset)}' + file_name[suffix_index:]
+        result = f'S{args.d_s_num}E{get_e_name(count, args.offset)}' + file_name[suffix_index:]
     return result
 
 
@@ -89,7 +89,7 @@ def rename(args):
 
 def init_parameter(args):
     args.d_name = Path(args.path).name
-    args.d_s_name = get_s_name(args.path)
+    args.d_s_num = get_d_s_num(args.path)
     args.d_p_name = Path(args.path).parent.name
 
 
@@ -110,7 +110,7 @@ def parse_args():
         description='GuGu_Rename',
         epilog='{d_name}:当前文件夹名称'
                + os.linesep +
-               '{d_s_name}:从当前文件夹名称中获取数字并以两位显示'
+               '{d_s_num}:从当前文件夹名称中获取数字并以两位显示'
                + os.linesep +
                '{d_p_name}:当前文件夹的父文件夹名称'
                + os.linesep +
