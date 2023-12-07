@@ -79,7 +79,10 @@ def get_file_name_list(args):
             suffix_index = file.find('.')
             file_name = file[:len(file) if suffix_index == -1 else suffix_index]
             result.setdefault(file_name, []).append(file)
-    return [(file_name, result[file_name]) for file_name in sorted(result.keys())]
+    result = [(file_name, result[file_name]) for file_name in sorted(result.keys())]
+    if args.reversed:
+        result.reverse()
+    return result
 
 
 def rename(args):
@@ -127,6 +130,7 @@ def parse_args():
     )
     parser.add_argument('-s', '--suffix', default=False, type=bool, help='指示要处理文件后缀 默认False')
     parser.add_argument('-d', '--directory', default=False, type=bool, help='指示要处理文件夹 默认False')
+    parser.add_argument('-r', '--reversed', default=False, type=bool, help='指示处理队列倒叙 默认False')
     args = parser.parse_args()
     check_args(parser, args)
     init_parameter(args)
