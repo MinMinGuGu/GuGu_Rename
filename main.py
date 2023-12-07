@@ -33,7 +33,7 @@ def format_file_name(args, count):
     result = result.replace('{d_name}', args.d_name)
     result = result.replace('{d_s_num}', args.d_s_num)
     result = result.replace('{d_p_name}', args.d_p_name)
-    result = result.replace('{item_num}', format_two_digits(count))
+    result = result.replace('{item_num}', get_e_name(count, args.offset))
     return result
 
 
