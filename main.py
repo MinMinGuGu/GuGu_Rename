@@ -91,6 +91,7 @@ def rename(args):
 
 
 def init_parameter(args):
+    args.path = os.path.abspath(os.path.join(os.getcwd(), args.path))
     args.d_name = Path(args.path).name
     args.d_s_num = get_d_s_num(args.path)
     args.d_p_name = Path(args.path).parent.name
