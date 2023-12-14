@@ -38,7 +38,7 @@ def format_file_name(args, count):
 
 
 def get_new_file_name(args, file_name, count):
-    suffix_index = file_name.find('.')
+    suffix_index = file_name.rfind('.') if args.last_suffix else file_name.find('.')
     suffix_index = len(file_name) if suffix_index == -1 else suffix_index
     if args.format:
         result = format_file_name(args, count)
@@ -127,11 +127,12 @@ def parse_args():
     parser.add_argument(
         '-f',
         '--format',
-        help='设置重命名的格式 默认为S{s_name}E{e_name} 不支持运算'
+        help='设置重命名的格式 默认为S{d_s_num}E{item_num} 不支持运算'
     )
     parser.add_argument('-s', '--suffix', default=False, type=bool, help='指示要处理文件后缀 默认False')
     parser.add_argument('-d', '--directory', default=False, type=bool, help='指示要处理文件夹 默认False')
     parser.add_argument('-r', '--reversed', default=False, type=bool, help='指示处理队列倒叙 默认False')
+    parser.add_argument('-l', '--last_suffix', default=False, type=bool, help='指示要处理到最后一个后缀为止 默认False')
     args = parser.parse_args()
     check_args(parser, args)
     init_parameter(args)
