@@ -127,7 +127,7 @@ def parse_args():
     parser.add_argument(
         '-f',
         '--format',
-        help='设置重命名的格式 默认为S{s_name}E{e_name} 不支持运算'
+        help='设置重命名的格式 默认为S{d_s_num}E{item_num} 不支持运算'
     )
     parser.add_argument('-s', '--suffix', default=False, type=bool, help='指示要处理文件后缀 默认False')
     parser.add_argument('-d', '--directory', default=False, type=bool, help='指示要处理文件夹 默认False')
