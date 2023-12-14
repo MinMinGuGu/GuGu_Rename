@@ -76,7 +76,7 @@ def get_file_name_list(args):
                 continue
             if args.exclude and re.search(args.exclude, file):
                 continue
-            suffix_index = file.find('.')
+            suffix_index = file.rfind('.') if args.last_suffix else file.find('.')
             file_name = file[:len(file) if suffix_index == -1 else suffix_index]
             result.setdefault(file_name, []).append(file)
     result = [(file_name, result[file_name]) for file_name in sorted(result.keys())]
